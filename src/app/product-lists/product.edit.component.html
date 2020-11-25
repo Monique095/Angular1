@@ -1,0 +1,70 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="saveProduct()" [formGroup]="productForm">
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="productNameId">Header</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="productNameId" type="text" placeholder="Header" formControlName="productName" [ngClass]="{'is-invalid': displayMessage.productName }" />
+                    <span class="invalid-feedback">
+                    {{displayMessage.productName}}
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="descriptionId">Description</label>
+                <div class="col-md-8">
+                    <textarea class="form-control" id="descriptionId" placeholder="Short Description of Product" rows=3 formControlName="description" [ngClass]="{'is-invalid': displayMessage.description}"></textarea>
+                    <span class="invalid-feedback">
+                    {{ displayMessage.description}}
+                    </span>
+                </div>
+            </div>
+
+
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="priceId">Price</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="priceId" type="text" placeholder="Price in Rand" formControlName="price" [ngClass]="{'is-invalid': displayMessage.price }" />
+                    <span class="invalid-feedback">
+                    {{displayMessage.Price}}
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label" for="date">Release Date</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="date" type="date" placeholder="Today's date" formControlName="releaseDate" [ngClass]="{'is-invalid': displayMessage.releaseDate }" />
+                    <span class="invalid-feedback">
+                    {{displayMessage.releaseDate}}
+                  </span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <div class="offset-md-2 col-md-4">
+                    <button class="btn btn-primary mr-3" style="width:80px;" type="submit" [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'" [disabled]="!productForm.valid">
+                    Post
+                    </button>
+                    <button class="btn btn-outline-secondary mr-3" style="width:80px;" type="button" title="Cancel your edits" [routerLink]="['/products']">
+                    Cancel
+                    </button>
+                    <button class="btn btn-outline-warning" style="width:80px" type="button" title="Delete this product" (click)="deleteProduct()">
+                    Delete
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="errorMessage">{{errorMessage}}
+    </div>
+</div>

@@ -7,14 +7,16 @@ export class UserServiceService {
 
   constructor() { }
   
-  addUser(user){
+  addUser(user)
+  {
     //All users 
     let users = [];
     if( localStorage.getItem('Users') ){
       users = JSON.parse(localStorage.getItem('Users'));
       users = [user, ...users];
     } 
-    else{
+    else
+    {
       users = [user];
     }
     localStorage.setItem('Users', JSON.stringify(users));
